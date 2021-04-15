@@ -1,0 +1,46 @@
+<div id="doveAlloggiare">
+  <h1>VisitTuscany dove alloggiare</h1>
+  <p>Reindirizza su dovedormire.visittuscany.com</p>
+  
+  <form id="form" action="/">
+    <label for="da">Da:</label>
+    <input type="date" id="da" name="da">
+    <label for="a">A:</label>
+    <input type="date" id="a" name="a">
+    <input type="submit">
+  </form>
+</div>
+
+<style>
+  h1,h2,h3,h4,h5,h6 {font-family: "Oswald"}
+body {
+  font-family: "Open Sans";
+  font-size: 18px;
+  }
+  #doveAlloggiare {
+    text-align: center;
+  }
+</style>
+<script>
+function logSubmit(event) {
+  var location = 'barga';
+  var startDate = form.elements.da.value;
+  startDate = startDate.split("-");
+  var formattedStartDate = new Date( startDate[0], startDate[1]-1, startDate[2]);
+  var startDateTimestamp = formattedStartDate.getTime();
+
+  var endDate = form.elements.a.value;
+  endDate = endDate.split("-");
+  var formattedEndDate = new Date( endDate[0], endDate[1]-1, endDate[2]);
+  var endDateTimestamp = formattedEndDate.getTime();
+
+  event.preventDefault();
+
+ var url = "https://dovedormire.visittuscany.com/html/?doveLabel="+location+"&queryParam="+location+"&dates={%22from%22%3A%22"+startDateTimestamp+"%22%2C%22to%22%3A%22"+endDateTimestamp+"%22}";
+ window.location = url;
+}
+
+const form = document.getElementById('form');
+const log = document.getElementById('log');
+form.addEventListener('submit', logSubmit);
+</script>
